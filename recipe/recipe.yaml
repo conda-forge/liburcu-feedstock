@@ -1,0 +1,57 @@
+context:
+  name: liburcu
+  version: "0.15.2"
+
+package:
+  name: liburcu
+  version: ${{ version }}
+
+source:
+  url: https://lttng.org/files/urcu/userspace-rcu-${{ version }}.tar.bz2
+  sha256: 59f36f2b8bda1b7620a7eced2634f26c549444818a8313025a3bb09c0766a61d
+
+build:
+  number: 0
+  skip: not linux
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - autoconf
+    - make
+  run_exports:
+    - ${{ pin_subpackage(name, upper_bound="x.x") }}
+  ignore_run_exports:
+    from_package: 
+      # C++ only needed for tests
+      - ${{ (compiler('cxx') | split)[0] }}
+
+tests:
+  - package_contents:
+      include:
+        - urcu/urcu-memb.h
+        - urcu/urcu-qsbr.h
+        - urcu/urcu-mb.h
+        - urcu/urcu-bp.h
+      lib:
+        - urcu-memb
+        - urcu-qsbr
+        - urcu-mb
+        - urcu-bp
+
+about:
+  homepage: https://liburcu.org/
+  license: LGPL-2.0-or-later
+  license_file: LICENSE
+  summary: liburcu is a LGPLv2.1 userspace RCU (read-copy-update) library
+  description: |
+    liburcu is a LGPLv2.1 userspace RCU (read-copy-update) library
+  documentation: https://liburcu.org/
+  repository: https://github.com/urcu/userspace-rcu
+
+extra:
+  recipe-maintainers:
+    - ZimmerA
+    - wolfv
