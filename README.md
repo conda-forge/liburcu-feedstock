@@ -15,7 +15,6 @@ Documentation: https://liburcu.org/
 
 liburcu is a LGPLv2.1 userspace RCU (read-copy-update) library
 
-
 Current build status
 ====================
 
