@@ -34,7 +34,6 @@ tests:
         - urcu/urcu-memb.h
         - urcu/urcu-qsbr.h
         - urcu/urcu-mb.h
-        - urcu/urcu-signal.h
         - urcu/urcu-bp.h
       lib:
         - urcu-memb
