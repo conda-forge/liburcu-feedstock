@@ -19,6 +19,7 @@ requirements:
     - ${{ compiler('c') }}
     - ${{ compiler('cxx') }}
     - ${{ stdlib('c') }}
+    - autoconf
     - make
   run_exports:
     - ${{ pin_subpackage(name, upper_bound="x.x") }}
